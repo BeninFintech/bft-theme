@@ -17,15 +17,18 @@ export default function AuthPageLayout({
       <div className="relative hidden bg-muted lg:block">
         {/* Text container with absolute positioning */}
         <div className="absolute inset-0 z-10 flex items-center justify-center">
-          <h1 className="text-4xl font-bold drop-shadow-md">{displayNameHtml}</h1>
+          <h1
+            className="text-4xl font-bold drop-shadow-md"
+            dangerouslySetInnerHTML={{ __html: displayNameHtml }}
+          />
         </div>
 
         {/* Image */}
-        {/* <img
+        <img
           src="https://ui.shadcn.com/placeholder.svg"
           alt="Image"
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-        /> */}
+        />
       </div>
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex gap-2 justify-between">
