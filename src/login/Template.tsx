@@ -32,7 +32,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   const { msg, msgStr, currentLanguage, enabledLanguages } = i18n;
 
-  const { realm, auth, url, message, isAppInitiatedAction } = kcContext;
+  const { realm, auth, url, client, message, isAppInitiatedAction } = kcContext;
 
   useEffect(() => {
     document.title = documentTitle ?? msgStr("loginTitle", kcContext.realm.displayName);
@@ -57,6 +57,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       <AuthPageLayout
+      // @ts-expect-error - client baseUrl is not defined in on context type
+        clientURL={client.baseUrl}
         displayNameHtml={realm.displayNameHtml}
         localeOptions={{
           enabledLanguages,

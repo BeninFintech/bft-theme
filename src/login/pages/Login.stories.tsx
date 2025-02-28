@@ -16,6 +16,18 @@ export const Default: Story = {
   render: () => <KcPageStory />
 };
 
+export const WithBackButton: Story = {
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        client: {
+          // @ts-expect-error - baseUrl is not defined in on context type
+          baseUrl: "https://example.com"}
+      }}
+    />
+  )
+};
+
 export const WithInvalidCredential: Story = {
   render: () => (
     <KcPageStory
