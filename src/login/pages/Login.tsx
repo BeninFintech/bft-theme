@@ -33,7 +33,13 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
       socialProvidersNode={<SocialProviders providers={social?.providers} label={msgStr("identity-provider-login-label")} />}
     >
       {realm.password && (
-        <form className="flex flex-col gap-4" onSubmit={() => setIsLoginButtonDisabled(true)} action={url.loginAction} method="post">
+        <form
+          id="kc-form-login"
+          className="flex flex-col gap-4"
+          onSubmit={() => setIsLoginButtonDisabled(true)}
+          action={url.loginAction}
+          method="post"
+        >
           {!usernameHidden && (
             <div className="grid gap-2">
               <Label htmlFor="username">
@@ -96,7 +102,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
           )}
 
           <input type="hidden" id="id-hidden-input" name="credentialId" value={auth.selectedCredential} />
-          <Button type="submit" className="w-full" disabled={isLoginButtonDisabled} tabIndex={7}>
+          <Button type="submit" name="login" className="w-full" disabled={isLoginButtonDisabled} tabIndex={7} id="kc-login">
             {msgStr("doLogIn")}
           </Button>
         </form>

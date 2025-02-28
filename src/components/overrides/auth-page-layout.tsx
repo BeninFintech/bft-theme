@@ -32,9 +32,9 @@ export default function AuthPageLayout({
       </div>
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex gap-2 justify-between">
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={history.back}>
             <ArrowLeft className="size-4" />
-            <span className="hidden md:block">Back</span>
+            <span className="sr-only">Back</span>
           </Button>
 
           <div className="flex gap-2">
