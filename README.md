@@ -1,14 +1,6 @@
-<p align="center">
-    <i>🚀 <a href="https://keycloakify.dev">Keycloakify</a> v11 starter 🚀</i>
-    <br/>
-    <br/>
-</p>
-
 # Quick start
 
 ```bash
-git clone https://github.com/keycloakify/keycloakify-starter
-cd keycloakify-starter
 yarn install # Or use an other package manager, just be sure to delete the yarn.lock if you use another package manager.
 ```
 
@@ -56,3 +48,9 @@ To release a new version **just update the `package.json` version and push**.
 
 To enable the workflow go to your fork of this repository on GitHub then navigate to:
 `Settings` > `Actions` > `Workflow permissions`, select `Read and write permissions`.
+
+
+# Deploying Keycloak on Kubernetes
+
+If you want to deploy Keycloak on Kubernetes, follow the official guide:
+[Kubernetes Deployment Guide](https://www.keycloak.org/getting-started/getting-started-kube)
