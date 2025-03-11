@@ -5,8 +5,8 @@ import type { LazyOrNot } from "keycloakify/tools/LazyOrNot";
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import type { KcContext } from "../KcContext";
-import type { I18n } from "../i18n";
+import type { KcContext } from "@/login/KcContext";
+import type { I18n } from "@/login/i18n";
 import { cn } from "@/lib/utils";
 import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 

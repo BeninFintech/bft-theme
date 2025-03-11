@@ -6,7 +6,7 @@ import type { KcContext } from "./KcContext";
 import { useI18n } from "./i18n";
 import DefaultPage from "keycloakify/login/DefaultPage";
 import Template from "keycloakify/login/Template";
-import AuthTemplate from "./Template";
+import LoginTemplate from "./Template";
 
 const UserProfileFormFields = lazy(
   () => import("keycloakify/login/UserProfileFormFields")
@@ -22,6 +22,7 @@ const LoginUsername = lazy(() => import("./pages/LoginUsername"));
 const LoginPassword = lazy(() => import("./pages/LoginPassword"));
 const Register = lazy(() => import("./pages/Register"));
 const LoginUpdatePassword = lazy(() => import("./pages/LoginUpdatePassword"));
+const LoginUpdateProfile = lazy(() => import("./pages/LoginUpdateProfile"));
 
 export default function KcPage(props: { kcContext: KcContext }) {
   const { kcContext } = props;
@@ -35,7 +36,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
             return (
               <Login
                 {...{ kcContext, i18n, classes }}
-                Template={AuthTemplate}
+                Template={LoginTemplate}
                 doUseDefaultCss={false}
               />
             );
@@ -43,7 +44,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
             return (
               <LoginResetPassword
                 {...{ kcContext, i18n, classes }}
-                Template={AuthTemplate}
+                Template={LoginTemplate}
                 doUseDefaultCss={false}
               />
             );
@@ -51,7 +52,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
             return (
               <LoginVerifyEmail
                 {...{ kcContext, i18n, classes }}
-                Template={AuthTemplate}
+                Template={LoginTemplate}
                 doUseDefaultCss={false}
               />
             );
@@ -59,7 +60,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
             return (
               <LoginUsername
                 {...{ kcContext, i18n, classes }}
-                Template={AuthTemplate}
+                Template={LoginTemplate}
                 doUseDefaultCss={false}
               />
             );
@@ -67,7 +68,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
             return (
               <LoginPassword
                 {...{ kcContext, i18n, classes }}
-                Template={AuthTemplate}
+                Template={LoginTemplate}
                 doUseDefaultCss={false}
               />
             );
@@ -75,15 +76,25 @@ export default function KcPage(props: { kcContext: KcContext }) {
             return (
               <LoginUpdatePassword
                 {...{ kcContext, i18n, classes }}
-                Template={AuthTemplate}
+                Template={LoginTemplate}
                 doUseDefaultCss={false}
+              />
+            );
+          case "login-update-profile.ftl":
+            return (
+              <LoginUpdateProfile
+                {...{ kcContext, i18n, classes }}
+                Template={LoginTemplate}
+                doUseDefaultCss={false}
+                UserProfileFormFields={CustomUserProfileFormFields}
+                doMakeUserConfirmPassword={doMakeUserConfirmPassword}
               />
             );
           case "register.ftl":
             return (
               <Register
                 {...{ kcContext, i18n, classes }}
-                Template={AuthTemplate}
+                Template={LoginTemplate}
                 doUseDefaultCss={false}
                 UserProfileFormFields={CustomUserProfileFormFields}
                 doMakeUserConfirmPassword={doMakeUserConfirmPassword}
