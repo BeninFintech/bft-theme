@@ -55,4 +55,4 @@ ENV KC_HTTP_ENABLED=true
 ENV KC_PROXY=edge
 
 # Use recommended production entrypoint
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized", "--import-realm"]
