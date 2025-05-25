@@ -2606,6 +2606,11 @@ inherits@^2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
+input-otp@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/input-otp/-/input-otp-1.4.2.tgz#f4d3d587d0f641729e55029b3b8c4870847f4f07"
+  integrity sha512-l3jWwYNvrEa6NTCt7BECfCm48GvwuZzkoeG3gBL2w4CHeOXW3eKFmf9UNYkNfYc3mxMrthMnxjIE07MT0zLBQA==
+
 internal-slot@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/internal-slot/-/internal-slot-1.0.7.tgz#c06dcca3ed874249881007b0a5523b172a190802"
@@ -2911,10 +2916,10 @@ json5@^2.2.2, json5@^2.2.3:
     object.assign "^4.1.4"
     object.values "^1.1.6"
 
-keycloakify@^11.8.15:
-  version "11.8.15"
-  resolved "https://registry.yarnpkg.com/keycloakify/-/keycloakify-11.8.15.tgz#7c2d3702b9f50f31b75b7aafe5433ff228e0f195"
-  integrity sha512-f5mJa8Zdc/oGpKw8+Owa3O/sljhEr1j9cowJOSru+om9MLQJ1ns9aBNGj8u4XC1E4NL1lhik2K0SbfXeOU04qA==
+keycloakify@^11.8.30:
+  version "11.8.30"
+  resolved "https://registry.yarnpkg.com/keycloakify/-/keycloakify-11.8.30.tgz#00607585cd0603fbae6b39946da5c0cd5a37d1f2"
+  integrity sha512-TrgEbHoFcnMRGBtB5xbFJr5a0a/AXRgLm1upL5ZgoA2qS2OaEqFM0KqfjLOoKDQ7cO1VEHcCnuv7fElIMJynsw==
   dependencies:
     tsafe "^1.8.5"
 

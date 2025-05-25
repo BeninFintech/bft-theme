@@ -23,6 +23,7 @@ const LoginPassword = lazy(() => import("./pages/LoginPassword"));
 const Register = lazy(() => import("./pages/Register"));
 const LoginUpdatePassword = lazy(() => import("./pages/LoginUpdatePassword"));
 const LoginUpdateProfile = lazy(() => import("./pages/LoginUpdateProfile"));
+const LoginOTP = lazy(() => import("./pages/LoginOtp"));
 
 export default function KcPage(props: { kcContext: KcContext }) {
   const { kcContext } = props;
@@ -64,6 +65,16 @@ export default function KcPage(props: { kcContext: KcContext }) {
                 doUseDefaultCss={false}
               />
             );
+
+          case "login-otp.ftl":
+            return (
+              <LoginOTP
+                {...{ kcContext, i18n, classes }}
+                Template={LoginTemplate}
+                doUseDefaultCss={false}
+              />
+            );
+
           case "login-password.ftl":
             return (
               <LoginPassword
