@@ -5,7 +5,8 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
+import { TemplateContent, TemplateFooter } from "@/login/TemplateComponents";
 
 type LoginUpdateProfileProps = PageProps<Extract<KcContext, { pageId: "login-update-profile.ftl" }>, I18n> & {
   UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -36,42 +37,42 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
       headerNode={msg("loginProfileTitle")}
       displayMessage={messagesPerField.exists("global")}
     >
-      <form id="kc-update-profile-form" className="flex flex-col gap-2" action={url.loginAction} method="post">
-        <UserProfileFormFields
-          kcContext={kcContext}
-          i18n={i18n}
-          kcClsx={kcClsx}
-          onIsFormSubmittableValueChange={setIsFormSubmittable}
-          doMakeUserConfirmPassword={doMakeUserConfirmPassword}
-        />
+      <TemplateContent>
+        <form id="kc-update-profile-form" className="flex flex-col gap-2" action={url.loginAction} method="post">
+          <UserProfileFormFields
+            kcContext={kcContext}
+            i18n={i18n}
+            kcClsx={kcClsx}
+            onIsFormSubmittableValueChange={setIsFormSubmittable}
+            doMakeUserConfirmPassword={doMakeUserConfirmPassword}
+          />
+        </form>
+      </TemplateContent>
+      <TemplateFooter className="flex-col gap-2">
+        <Button className="w-full" type="submit" form="kc-update-profile-form" disabled={!isFormSubmittable}>
+          {msgStr("doSubmit")}
+        </Button>
 
-        <div className="flex flex-col gap-2 mt-2">
-          <Button className="w-full" type="submit" disabled={!isFormSubmittable}>
-            {msgStr("doSubmit")}
+        {isAppInitiatedAction && (
+          <Button
+            variant="outline"
+            className="w-full"
+            type="submit"
+            form="kc-update-profile-form"
+            name="cancel-aia"
+            value="true"
+            formNoValidate
+          >
+            {msg("doCancel")}
           </Button>
-          
-          {isAppInitiatedAction && (
-            <Button 
-              variant="outline" 
-              className="w-full" 
-              type="submit" 
-              name="cancel-aia" 
-              value="true" 
-              formNoValidate
-            >
-              {msg("doCancel")}
-            </Button>
-          )}
-        </div>
+        )}
 
         {!isAppInitiatedAction && (
-          <div id="kc-form-options">
-            <Button variant="link" className="w-full text-sm" asChild>
-              <a href={url.loginUrl}>{msg("backToLogin")}</a>
-            </Button>
-          </div>
+          <Button variant="link" className="w-full text-sm" asChild>
+            <a href={url.loginUrl}>{msg("backToLogin")}</a>
+          </Button>
         )}
-      </form>
+      </TemplateFooter>
     </Template>
   );
 }

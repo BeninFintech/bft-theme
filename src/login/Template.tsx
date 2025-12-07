@@ -10,6 +10,7 @@ import { DisplayMessage } from "@/components/overrides/display-message";
 import AuthPageLayout from "@/components/overrides/auth-page-layout";
 import { ThemeProvider } from "next-themes";
 import { RestartLoginAttempt } from "@/components/overrides/restart-login-attempt";
+import { TemplateShell, TemplateHeader, TemplateTitle } from "./TemplateComponents";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
   const {
@@ -68,53 +69,47 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
       >
         <div className={kcClsx("kcLoginClass")}>
           <div className="space-y-4">
-            <header className={kcClsx("kcFormHeaderClass")}>
-              {(() => {
-                const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
-                  <div className="flex flex-col items-center gap-2 text-center">
-                    <h1 className="text-2xl font-bold">{headerNode}</h1>
+            {auth !== undefined && auth.showUsername && !auth.showResetCredentials && (
+              <header className={kcClsx("kcFormHeaderClass")}>
+                {displayRequiredFields ? (
+                  <div className={kcClsx("kcContentWrapperClass")}>
+                    <div className={clsx(kcClsx("kcLabelWrapperClass"), "subtitle")}>
+                      <span className="subtitle">
+                        <span className="required">*</span>
+                        {msg("requiredFields")}
+                      </span>
+                    </div>
+                    <div className="col-md-10">
+                      <RestartLoginAttempt
+                        attemptedUsername={auth.attemptedUsername}
+                        loginRestartFlowUrl={url.loginRestartFlowUrl}
+                        restartLoginTooltip={msgStr("restartLoginTooltip")}
+                      />
+                    </div>
                   </div>
                 ) : (
-                  // <div id="kc-username" className={kcClsx("kcFormGroupClass")}>
-                  //   <label id="kc-attempted-username">{auth.attemptedUsername}</label>
-                  //   <a id="reset-login" href={url.loginRestartFlowUrl} aria-label={msgStr("restartLoginTooltip")}>
-                  //     <div className="kc-login-tooltip">
-                  //       <i className={kcClsx("kcResetFlowIcon")}></i>
-                  //       <span className="kc-tooltip-text">{msg("restartLoginTooltip")}</span>
-                  //     </div>
-                  //   </a>
-                  // </div>
                   <RestartLoginAttempt
                     attemptedUsername={auth.attemptedUsername}
                     loginRestartFlowUrl={url.loginRestartFlowUrl}
                     restartLoginTooltip={msgStr("restartLoginTooltip")}
                   />
-                );
-
-                if (displayRequiredFields) {
-                  return (
-                    <div className={kcClsx("kcContentWrapperClass")}>
-                      <div className={clsx(kcClsx("kcLabelWrapperClass"), "subtitle")}>
-                        <span className="subtitle">
-                          <span className="required">*</span>
-                          {msg("requiredFields")}
-                        </span>
-                      </div>
-                      <div className="col-md-10">{node}</div>
-                    </div>
-                  );
-                }
-
-                return node;
-              })()}
-            </header>
+                )}
+              </header>
+            )}
             <div id="kc-content">
               <div id="kc-content-wrapper" className="space-y-4">
                 {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
                 {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
                   <DisplayMessage message={message} />
                 )}
-                {children}
+                <TemplateShell className="w-full">
+                  {headerNode && !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) && (
+                    <TemplateHeader>
+                      <TemplateTitle>{headerNode}</TemplateTitle>
+                    </TemplateHeader>
+                  )}
+                  {children}
+                </TemplateShell>
                 {auth !== undefined && auth.showTryAnotherWayLink && (
                   <form id="kc-select-try-another-way-form" action={url.loginAction} method="post">
                     <div className={kcClsx("kcFormGroupClass")}>

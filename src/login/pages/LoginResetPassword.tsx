@@ -2,9 +2,8 @@ import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "@/login/KcContext";
 import type { I18n } from "@/login/i18n";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button, Input, Field, FieldLabel } from "@/components/ui";
+import { TemplateContent, TemplateFooter } from "@/login/TemplateComponents";
 
 export default function LoginResetPassword(props: PageProps<Extract<KcContext, { pageId: "login-reset-password.ftl" }>, I18n>) {
   const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -20,13 +19,12 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
       displayMessage={!messagesPerField.existsError("username")}
       headerNode={msg("emailForgotTitle")}
     >
-      <form id="kc-reset-password-form" className="flex flex-col gap-4" action={url.loginAction} method="post">
-        <p className="text-md text-muted-foreground">{realm.duplicateEmailsAllowed ? msg("emailInstructionUsername") : msg("emailInstruction")}</p>
-        <div className="grid gap-2">
-          <div className="grid gap-2">
-            <Label htmlFor="username">
+      <TemplateContent>
+        <form id="kc-reset-password-form" className="flex flex-col gap-4" action={url.loginAction} method="post">
+          <Field>
+            <FieldLabel htmlFor="username">
               {!realm.loginWithEmailAllowed ? msg("username") : !realm.registrationEmailAsUsername ? msg("usernameOrEmail") : msg("email")}
-            </Label>
+            </FieldLabel>
             <Input
               type="text"
               id="username"
@@ -43,15 +41,17 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                 }}
               />
             )}
-          </div>
+          </Field>
           <Button type="submit" className="w-full">
             {msgStr("doSubmit")}
           </Button>
-        </div>
+        </form>
+      </TemplateContent>
+      <TemplateFooter className="flex-col gap-2">
         <Button variant="link" className="w-full text-sm" asChild>
           <a href={url.loginUrl}>{msg("backToLogin")}</a>
         </Button>
-      </form>
+      </TemplateFooter>
     </Template>
   );
 }
