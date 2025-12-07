@@ -6,7 +6,7 @@ import { Button, Input, Checkbox, Field, FieldLabel, FieldSeparator } from "@/co
 import { TemplateContent, TemplateFooter } from "@/login/TemplateComponents";
 import type { KcContext } from "@/login/KcContext";
 import type { I18n } from "@/login/i18n";
-import { getProviderIcon } from "@/components/overrides/provider-icons";
+import { SocialProviderButton } from "@/components/overrides/social-provider-button";
 import { cn } from "@/lib/utils";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
@@ -109,14 +109,15 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
           </TemplateContent>
           <TemplateFooter className="flex-col gap-2 space-y-6">
             {social?.providers && social.providers.length > 0 && (
-              <div className={cn("w-full grid gap-2 grid-cols-1", social.providers.length > 1 && "md:grid-cols-2")}>
+              <div className={cn("w-full grid gap-3 grid-cols-1", social.providers.length > 1 && "md:grid-cols-2")}>
                 {social.providers.map((p) => (
-                  <Button key={p.alias} variant="outline" type="button" className="w-full" asChild>
-                    <a href={p.loginUrl} id={`social-${p.alias}`}>
-                      {getProviderIcon(p.alias)}
-                      <span className="ml-2">{p.displayName}</span>
-                    </a>
-                  </Button>
+                  <SocialProviderButton
+                    key={p.alias}
+                    alias={p.alias}
+                    displayName={p.displayName}
+                    loginUrl={p.loginUrl}
+                    id={`social-${p.alias}`}
+                  />
                 ))}
               </div>
             )}

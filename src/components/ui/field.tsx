@@ -166,14 +166,15 @@ function FieldSeparator({
       data-content={!!children}
       className={cn(
         "relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2",
+        "animate-in fade-in duration-500",
         className
       )}
       {...props}
     >
-      <Separator className="absolute inset-0 top-1/2" />
+      <Separator className="absolute inset-0 top-1/2 bg-gradient-to-r from-transparent via-border to-transparent" />
       {children && (
         <span
-          className="bg-background text-muted-foreground relative mx-auto block w-fit px-2"
+          className="bg-card text-muted-foreground relative mx-auto block w-fit px-3 text-xs font-medium uppercase tracking-wider"
           data-slot="field-separator-content"
         >
           {children}

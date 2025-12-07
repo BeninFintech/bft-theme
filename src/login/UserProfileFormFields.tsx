@@ -18,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { Field, FieldLabel, FieldDescription } from "@/components/ui/field";
 import { PasswordInput } from "@/components/overrides/custom-password-input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -57,52 +58,48 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
                 i18n={i18n}
               />
             )}
-            <div
-              className="space-y-2"
+            <Field
               style={{
                 display: attribute.name === "password-confirm" && !doMakeUserConfirmPassword ? "none" : undefined
               }}
             >
-              <div>
-                <Label htmlFor={attribute.name} className="text-sm font-medium">
-                  {advancedMsg(attribute.displayName ?? "")}
-                  {attribute.required && <span className="text-destructive ml-1">*</span>}
-                </Label>
+              <FieldLabel htmlFor={attribute.name}>
+                {advancedMsg(attribute.displayName ?? "")}
+                {attribute.required && <span className="text-destructive ml-1">*</span>}
+              </FieldLabel>
 
-                {attribute.annotations.inputHelperTextBefore !== undefined && (
-                  <div className="text-sm text-muted-foreground" id={`form-help-text-before-${attribute.name}`} aria-live="polite">
-                    {advancedMsg(attribute.annotations.inputHelperTextBefore)}
-                  </div>
-                )}
-              </div>
-              <div>
-                <InputFieldByType
+              {attribute.annotations.inputHelperTextBefore !== undefined && (
+                <FieldDescription id={`form-help-text-before-${attribute.name}`} aria-live="polite">
+                  {advancedMsg(attribute.annotations.inputHelperTextBefore)}
+                </FieldDescription>
+              )}
+
+              <InputFieldByType
+                attribute={attribute}
+                valueOrValues={valueOrValues}
+                displayableErrors={displayableErrors}
+                dispatchFormAction={dispatchFormAction}
+                kcClsx={kcClsx}
+                i18n={i18n}
+              />
+              <FieldErrors attribute={attribute} displayableErrors={displayableErrors} fieldIndex={undefined} />
+              {attribute.annotations.inputHelperTextAfter !== undefined && (
+                <FieldDescription className="mt-2" id={`form-help-text-after-${attribute.name}`} aria-live="polite">
+                  {advancedMsg(attribute.annotations.inputHelperTextAfter)}
+                </FieldDescription>
+              )}
+
+              {AfterField !== undefined && (
+                <AfterField
                   attribute={attribute}
-                  valueOrValues={valueOrValues}
-                  displayableErrors={displayableErrors}
                   dispatchFormAction={dispatchFormAction}
+                  displayableErrors={displayableErrors}
+                  valueOrValues={valueOrValues}
                   kcClsx={kcClsx}
                   i18n={i18n}
                 />
-                <FieldErrors attribute={attribute} displayableErrors={displayableErrors} fieldIndex={undefined} />
-                {attribute.annotations.inputHelperTextAfter !== undefined && (
-                  <div className="text-sm text-muted-foreground mt-2" id={`form-help-text-after-${attribute.name}`} aria-live="polite">
-                    {advancedMsg(attribute.annotations.inputHelperTextAfter)}
-                  </div>
-                )}
-
-                {AfterField !== undefined && (
-                  <AfterField
-                    attribute={attribute}
-                    dispatchFormAction={dispatchFormAction}
-                    displayableErrors={displayableErrors}
-                    valueOrValues={valueOrValues}
-                    kcClsx={kcClsx}
-                    i18n={i18n}
-                  />
-                )}
-              </div>
-            </div>
+              )}
+            </Field>
           </Fragment>
         );
       })}
