@@ -1,7 +1,7 @@
 ARG KEYCLOAK_VERSION=26.3.3
 
 # Stage 1: Build Keycloak theme JAR
-FROM node:18-alpine AS keycloakify_jar_builder
+FROM node:20-alpine AS keycloakify_jar_builder
 
 # Install JDK and Maven
 RUN apk update && \
@@ -9,12 +9,13 @@ RUN apk update && \
 
 # Install dependencies first for better layer caching
 WORKDIR /opt/app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm
+RUN pnpm install --frozen-lockfile
 
 # Copy source and build
 COPY . .
-RUN yarn build-keycloak-theme
+RUN pnpm build-keycloak-theme
 
 # Stage 2: Build Keycloak server with the theme
 FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION} AS builder
@@ -55,4 +56,4 @@ ENV KC_HTTP_ENABLED=true
 ENV KC_PROXY=edge
 
 # Use recommended production entrypoint
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized", "--import-realm"]
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start"]

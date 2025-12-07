@@ -21,7 +21,7 @@ services:
     build:
       context: .
     container_name: keycloak
-    command: ["start", "--optimized", "--import-realm"]
+    command: ["--optimized", "--import-realm"]
     environment:
       # set hostname if you are behind a reverse proxy
       # KC_HOSTNAME: localhost
