@@ -60,7 +60,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
       <AuthPageLayout
       // @ts-expect-error - client baseUrl is not defined in on context type
         clientURL={client.baseUrl}
-        displayNameHtml={realm.displayNameHtml}
         localeOptions={{
           enabledLanguages,
           currentLanguage,
