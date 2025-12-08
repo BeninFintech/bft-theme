@@ -32,6 +32,7 @@ const LoginOauthGrant = lazy(() => import("./pages/LoginOauthGrant"));
 const LinkIdpAction = lazy(() => import("./pages/LinkIdpAction"));
 const LoginIdpLinkConfirm = lazy(() => import("./pages/LoginIdpLinkConfirm"));
 const LoginIdpLinkEmail = lazy(() => import("./pages/LoginIdpLinkEmail"));
+const LoginIdpLinkConfirmOverride = lazy(() => import("./pages/LoginIdpLinkConfirmOverride"));
 const Error = lazy(() => import("./pages/Error"));
 const Info = lazy(() => import("./pages/Info"));
 const Terms = lazy(() => import("./pages/Terms"));
@@ -181,6 +182,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
           case "login-idp-link-email.ftl":
             return (
               <LoginIdpLinkEmail
+                {...{ kcContext, i18n, classes }}
+                Template={LoginTemplate}
+                doUseDefaultCss={false}
+              />
+            );
+          case "login-idp-link-confirm-override.ftl":
+            return (
+              <LoginIdpLinkConfirmOverride
                 {...{ kcContext, i18n, classes }}
                 Template={LoginTemplate}
                 doUseDefaultCss={false}
