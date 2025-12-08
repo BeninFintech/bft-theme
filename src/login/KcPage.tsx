@@ -30,6 +30,7 @@ const WebauthnError = lazy(() => import("./pages/WebauthnError"));
 const LoginOauth2DeviceVerifyUserCode = lazy(() => import("./pages/LoginOauth2DeviceVerifyUserCode"));
 const LoginOauthGrant = lazy(() => import("./pages/LoginOauthGrant"));
 const LinkIdpAction = lazy(() => import("./pages/LinkIdpAction"));
+const LoginIdpLinkConfirm = lazy(() => import("./pages/LoginIdpLinkConfirm"));
 const Error = lazy(() => import("./pages/Error"));
 const Info = lazy(() => import("./pages/Info"));
 const Terms = lazy(() => import("./pages/Terms"));
@@ -163,6 +164,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
           case "link-idp-action.ftl":
             return (
               <LinkIdpAction
+                {...{ kcContext, i18n, classes }}
+                Template={LoginTemplate}
+                doUseDefaultCss={false}
+              />
+            );
+          case "login-idp-link-confirm.ftl":
+            return (
+              <LoginIdpLinkConfirm
                 {...{ kcContext, i18n, classes }}
                 Template={LoginTemplate}
                 doUseDefaultCss={false}
