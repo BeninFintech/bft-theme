@@ -6,18 +6,11 @@ import type { KcContext } from "@/login/KcContext";
 import type { I18n } from "@/login/i18n";
 import { Button, Checkbox } from "@/components/ui";
 import { TemplateContent, TemplateFooter } from "@/login/TemplateComponents";
-import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 
 export default function LoginRecoveryAuthnCodeConfig(
   props: PageProps<Extract<KcContext, { pageId: "login-recovery-authn-code-config.ftl" }>, I18n>
 ) {
   const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
-
-  const { kcClsx } = getKcClsx({
-    doUseDefaultCss,
-    classes
-  });
-
   const { recoveryAuthnCodesConfigBean, isAppInitiatedAction, url } = kcContext;
   const { msg, msgStr } = i18n;
 
@@ -48,7 +41,7 @@ export default function LoginRecoveryAuthnCodeConfig(
         <ol id={olRecoveryCodesListId} className="list-decimal list-outside ml-6 space-y-2 font-mono text-sm">
           {recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesList.map((code, index) => (
             <li key={index} className="pl-2">
-              <span className="font-semibold">{index + 1}:</span> {code.slice(0, 4)}-{code.slice(4, 8)}-{code.slice(8)}
+              {code.slice(0, 4)}-{code.slice(4, 8)}-{code.slice(8)}
             </li>
           ))}
         </ol>
