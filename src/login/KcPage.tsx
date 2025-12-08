@@ -40,6 +40,7 @@ const IdpReviewUserProfile = lazy(() => import("./pages/IdpReviewUserProfile"));
 const UpdateEmail = lazy(() => import("./pages/UpdateEmail"));
 const SelectAuthenticator = lazy(() => import("./pages/SelectAuthenticator"));
 const SamlPostForm = lazy(() => import("./pages/SamlPostForm"));
+const DeleteCredential = lazy(() => import("./pages/DeleteCredential"));
 const Error = lazy(() => import("./pages/Error"));
 const Info = lazy(() => import("./pages/Info"));
 const Terms = lazy(() => import("./pages/Terms"));
@@ -257,6 +258,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
           case "saml-post-form.ftl":
             return (
               <SamlPostForm
+                {...{ kcContext, i18n, classes }}
+                Template={LoginTemplate}
+                doUseDefaultCss={false}
+              />
+            );
+          case "delete-credential.ftl":
+            return (
+              <DeleteCredential
                 {...{ kcContext, i18n, classes }}
                 Template={LoginTemplate}
                 doUseDefaultCss={false}
