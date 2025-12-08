@@ -27,6 +27,7 @@ const LoginOTP = lazy(() => import("./pages/LoginOtp"));
 const WebauthnAuthenticate = lazy(() => import("./pages/WebauthnAuthenticate"));
 const Error = lazy(() => import("./pages/Error"));
 const Info = lazy(() => import("./pages/Info"));
+const Terms = lazy(() => import("./pages/Terms"));
 
 export default function KcPage(props: { kcContext: KcContext }) {
   const { kcContext } = props;
@@ -133,6 +134,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
           case "info.ftl":
             return (
               <Info
+                {...{ kcContext, i18n, classes }}
+                Template={LoginTemplate}
+                doUseDefaultCss={false}
+              />
+            );
+          case "terms.ftl":
+            return (
+              <Terms
                 {...{ kcContext, i18n, classes }}
                 Template={LoginTemplate}
                 doUseDefaultCss={false}
