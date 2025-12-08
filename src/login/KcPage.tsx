@@ -34,6 +34,7 @@ const LoginIdpLinkConfirm = lazy(() => import("./pages/LoginIdpLinkConfirm"));
 const LoginIdpLinkEmail = lazy(() => import("./pages/LoginIdpLinkEmail"));
 const LoginIdpLinkConfirmOverride = lazy(() => import("./pages/LoginIdpLinkConfirmOverride"));
 const LoginPageExpired = lazy(() => import("./pages/LoginPageExpired"));
+const LoginConfigTotp = lazy(() => import("./pages/LoginConfigTotp"));
 const Error = lazy(() => import("./pages/Error"));
 const Info = lazy(() => import("./pages/Info"));
 const Terms = lazy(() => import("./pages/Terms"));
@@ -199,6 +200,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
           case "login-page-expired.ftl":
             return (
               <LoginPageExpired
+                {...{ kcContext, i18n, classes }}
+                Template={LoginTemplate}
+                doUseDefaultCss={false}
+              />
+            );
+          case "login-config-totp.ftl":
+            return (
+              <LoginConfigTotp
                 {...{ kcContext, i18n, classes }}
                 Template={LoginTemplate}
                 doUseDefaultCss={false}
