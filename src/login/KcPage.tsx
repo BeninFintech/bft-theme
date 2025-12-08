@@ -48,6 +48,7 @@ const LoginRecoveryAuthnCodeConfig = lazy(() => import("./pages/LoginRecoveryAut
 const LoginRecoveryAuthnCodeInput = lazy(() => import("./pages/LoginRecoveryAuthnCodeInput"));
 const LoginResetOtp = lazy(() => import("./pages/LoginResetOtp"));
 const LoginX509Info = lazy(() => import("./pages/LoginX509Info"));
+const LoginPasskeysConditionalAuthenticate = lazy(() => import("./pages/LoginPasskeysConditionalAuthenticate"));
 const Error = lazy(() => import("./pages/Error"));
 const Info = lazy(() => import("./pages/Info"));
 const Terms = lazy(() => import("./pages/Terms"));
@@ -329,6 +330,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
           case "login-x509-info.ftl":
             return (
               <LoginX509Info
+                {...{ kcContext, i18n, classes }}
+                Template={LoginTemplate}
+                doUseDefaultCss={false}
+              />
+            );
+          case "login-passkeys-conditional-authenticate.ftl":
+            return (
+              <LoginPasskeysConditionalAuthenticate
                 {...{ kcContext, i18n, classes }}
                 Template={LoginTemplate}
                 doUseDefaultCss={false}
