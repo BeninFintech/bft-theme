@@ -1,18 +1,19 @@
 # Architecture configuration - defaults to host architecture
 ARCH ?= amd64
 
-IMAGE_VERSION ?= latest
-IMAGENAME ?= keycloak-custom-theme
-REGISTRY ?= ghcr.io/cloakwise-io
-IMAGE_TAG = $(REGISTRY)/$(IMAGENAME):$(IMAGE_VERSION)
-IMAGE_TAG_LATEST = $(REGISTRY)/$(IMAGENAME):latest
 KEYCLOAK_VERSION ?= 26.4.7
+
+REGISTRY ?= ghcr.io/beninfintech
+IMAGE_NAME ?= bft-keycloak-theme
+IMAGE_VERSION ?= latest
+IMAGE_TAG = $(REGISTRY)/$(IMAGE_NAME):$(IMAGE_VERSION)
+IMAGE_TAG_LATEST = $(REGISTRY)/$(IMAGE_NAME):latest
 
 .PHONY: local-build-push
 local-build-push:
-	docker build -t $(LOCAL_USER)/keycloak-custom-theme:latest \
+	docker build -t $(LOCAL_USER)/$(IMAGE_NAME):latest \
 		--build-arg KEYCLOAK_VERSION=$(KEYCLOAK_VERSION) .
-	docker push $(LOCAL_USER)/keycloak-custom-theme:latest
+	docker push $(LOCAL_USER)/$(IMAGE_NAME):latest
 
 .PHONY: container-build
 container-build:

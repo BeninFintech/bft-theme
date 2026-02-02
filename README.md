@@ -1,25 +1,22 @@
-<img src="./screenshots//login-2-dark.png" alt="keycloak-custom-theme" width="100%">
+<img src="./screenshots//login-2-dark.png" alt="bft-keycloak-theme" width="100%">
 
-# Keycloak Custom Theme
+# BFT Keycloak Theme
 
-![build status](https://github.com/paulgrammer/keycloak-custom-theme/actions/workflows/build.yaml/badge.svg)
-[![Trivy vulnerability scanner](https://github.com/paulgrammer/keycloak-custom-theme/actions/workflows/trivy.yaml/badge.svg?branch=main)](https://github.com/paulgrammer/keycloak-custom-theme/actions/workflows/trivy.yaml)
-<a href="https://ko-fi.com/paulgrammer">
-  <img src="https://ko-fi.com/img/githubbutton_sm.svg" width="150" alt="Support on Ko-fi"/>
-</a>
+![build status](https://github.com/beninfintech/bft-keycloak-theme/actions/workflows/build.yaml/badge.svg)
+[![Trivy vulnerability scanner](https://github.com/beninfintech/bft-keycloak-theme/actions/workflows/trivy.yaml/badge.svg?branch=main)](https://github.com/beninfintech/bft-keycloak-theme/actions/workflows/trivy.yaml)
 
 A modern, production-ready custom theme for Keycloak built with React, TypeScript, and shadcn/ui components. This theme provides a visually stunning authentication experience with glassmorphism effects, smooth animations, and a fully responsive design.
 
 ## Features
 
 - **Component Library**
-  - Built with [shadcn/ui](https://ui.shadcn.com/) components
+  - Built with [shadcn/ui](https://ui.shadcn.com) components
   - Customizable Field components for form inputs
   - Consistent design system using Tailwind CSS
 
 - **Developer Experience**
   - TypeScript for type safety
-  - Storybook for component development - [View Live Storybook](https://cloakwise-io.github.io/keycloak-custom-theme)
+  - Storybook for component development - [View Live Storybook](https://beninfintech.github.io/bft-keycloak-theme)
   - Hot module replacement with Vite
   - ESLint and Prettier for code quality
 
@@ -27,7 +24,7 @@ A modern, production-ready custom theme for Keycloak built with React, TypeScrip
 
 ### Prerequisites
 
-- Node.js >= 18.0.0 or >= 20.0.0
+- Node.js >= 18.0.0 or >= 22.0.0
 - pnpm >= 8.15.2
 - Maven >= 3.1.1 (for building the theme)
 - Java >= 7 (for Maven)
@@ -61,7 +58,7 @@ pnpm storybook
 
 Storybook will be available at `http://localhost:6006`.
 
-**Live Storybook:** [https://cloakwise-io.github.io/keycloak-custom-theme](https://cloakwise-io.github.io/keycloak-custom-theme)
+**Live Storybook:** [https://beninfintech.github.io/bft-keycloak-theme](https://beninfintech.github.io/bft-keycloak-theme)
 
 ## Building the Theme
 
@@ -88,7 +85,7 @@ Or download Maven from [maven.apache.org](https://maven.apache.org/download.cgi)
 Build the theme:
 
 ```bash
-pnpm run build-keycloak-theme
+pnpm run build:theme
 ```
 
 This command will:
@@ -137,7 +134,7 @@ For more customization strategies, see the [Keycloakify customization documentat
 Initialize the account management theme:
 
 ```bash
-npx keycloakify initialize-account-theme
+pnpm dlx keycloakify initialize-account-theme
 ```
 
 ### Email Theme
@@ -145,7 +142,7 @@ npx keycloakify initialize-account-theme
 Initialize the email theme:
 
 ```bash
-npx keycloakify initialize-email-theme
+pnpm dlx keycloakify initialize-email-theme
 ```
 
 ## Deployment

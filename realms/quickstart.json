@@ -13,8 +13,12 @@
       "alwaysDisplayInConsole": true,
       "clientAuthenticatorType": "client-secret",
       "secret": "xNcX49dTwgQO3fvO2UgmbGrqisNrHJ18",
-      "redirectUris": ["http://localhost:3000/*"],
-      "webOrigins": ["http://localhost:3000"],
+      "redirectUris": [
+        "http://localhost:3000/*"
+      ],
+      "webOrigins": [
+        "http://localhost:3000"
+      ],
       "notBefore": 0,
       "standardFlowEnabled": true,
       "frontchannelLogout": true,
@@ -34,9 +38,14 @@
           "value": "alice"
         }
       ],
-      "realmRoles": ["user", "offline_access"],
+      "realmRoles": [
+        "user",
+        "offline_access"
+      ],
       "clientRoles": {
-        "account": ["manage-account"]
+        "account": [
+          "manage-account"
+        ]
       }
     }
   ],
